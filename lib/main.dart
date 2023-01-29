@@ -35,6 +35,8 @@ class _QuizPageState extends State<QuizPage> {
 
   int questionNumber = 0;
 
+  List<bool> answer = [false, true, true];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,6 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
+                //Displaying a question
                 questions[questionNumber],
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -69,8 +72,17 @@ class _QuizPageState extends State<QuizPage> {
                   ),
                 ),
                 onPressed: () {
+                  bool correctAnswer = answer[questionNumber];
+
+                  if (correctAnswer == true) {
+                    print('correct');
+                  } else {
+                    print('nope');
+                  }
+
                   print(questionNumber);
                   setState(() {
+                    //Nesx question by increasing int
                     questionNumber++;
                     scoreKeeper.add(
                       Icon(
@@ -95,9 +107,20 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                //Check for answer
+
+                bool correctAnswer = answer[questionNumber];
+
+                if (correctAnswer == false) {
+                  print('correct');
+                } else {
+                  print('nope');
+                }
+
                 print(questionNumber);
                 setState(() {
                   questionNumber++;
+                  //List for storing true or false
                   scoreKeeper.add(
                     Icon(
                       Icons.close,
